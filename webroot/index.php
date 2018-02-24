@@ -5,6 +5,8 @@ define('SYSTEM_PATH',   dirname(__FILE__) . '/../core');
 define('APP_PATH',      dirname(__FILE__) . '/../app');
 
 require_once(SYSTEM_PATH . '/core_class.php');
+require_once(SYSTEM_PATH . '/db_model.php');
+require_once(SYSTEM_PATH . '/dBug.php');
 require_once(APP_PATH .    '/controller/app_controller.php');
 require_once(APP_PATH .    '/model/app_model.php');
 
@@ -120,6 +122,7 @@ class main {
         $config_common = $this->_config_common();
         $config_env    = $this->_config_env();
         $ctrl->config = array_merge($config_common, $config_env);
+        $GLOBALS['config'] = $ctrl->config;
 
         // ライブラリロード
         if (isset($ctrl->config['library']) && is_array($ctrl->config['library'])) {
