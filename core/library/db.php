@@ -64,6 +64,21 @@ class db {
         return $this->last_id;
     }
 
+
+    /**
+     * 
+     *
+     * @param   string      ID
+     * @param   string      キー
+     * @return  array       取得した情報
+     */
+    public function select_by_id($table, $id, $key = 'id') {
+        $params = array(
+            ':' . $key => $id,
+        );
+        return $this->select('SELECT * FROM ' . $table . ' WHERE ' . $key . ' = :' . $key, $params);
+    }
+
     /**
      * 
      *
